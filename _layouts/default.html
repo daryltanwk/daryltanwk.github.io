@@ -9,6 +9,26 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script>
+      // Check for cookie
+      let innocent = true;
+      let d = new Date()
+      window.onload = ()=>{
+        innocent = (document.cookie.search("innocent=false") == -1)
+          if(innocent) {
+          document.getElementById("normal").style.display = ""
+          document.getElementById("invert").remove()
+        } else {
+          document.getElementById("invert").style.display = ""
+          document.getElementsByClassName("inner")[0].style.backgroundColor = "#395" 
+          document.getElementById("container").style.backgroundColor = "#123"
+          document.getElementById("normal").remove()
+        }
+        d.setTime((d.getTime()+(1*10*1000)))
+        let exp = d.toUTCString()
+        document.cookie = "innocent=false; expires=" + exp
+      }      
+    </script>
 
 {% seo %}
     {% include head-custom.html %}
